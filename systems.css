@@ -1,0 +1,168 @@
+/* Version 5: #systems (systems.js), built like GeneralMind's three-system-types section. A centred heading, the
+   "Activate Autopilot" switch, and a stage: grey while off, blue-grey while on. Icon groups left, wires into a laptop
+   right. The screen inside is 1280 × 800, scaled by --s, in Biesterfeld's look (Roboto, white, red, grey). */
+.sy-head { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.sy-eyebrow { margin: 0 0 1.2rem; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.sy-h { max-width: 18ch; margin: 0; font-size: clamp(2.5rem, 6vw, 5.6rem); font-weight: 500; line-height: 1; letter-spacing: -.055em; text-wrap: balance; }
+.sy-lead { max-width: 68ch; margin: 1.6rem 0 0; font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.5; color: var(--ink-2); text-wrap: balance; }
+
+/* the switch, built like GeneralMind's: a white pill with a thin edge, the sparkle, the one word, a small switch */
+.sy-switch { display: inline-flex; align-items: center; gap: .7rem; margin-top: clamp(2.2rem, 4vw, 3rem); padding: .8rem 1rem .8rem .9rem; border-radius: 999px; border: 1px solid rgb(255 255 255 / .55); background: #fff; color: #0a0a0a; font: inherit; font-size: clamp(1.1rem, 1.4vw, 1.3rem); letter-spacing: -.01em; cursor: pointer; transition: background-color 300ms; }
+.sy-switch:hover { background: #f6f6f7; }
+.sy-switch:focus-visible { outline: 2px solid var(--d); outline-offset: 4px; }
+.sy-spark { display: grid; width: 26px; height: 26px; color: var(--d); }
+.sy-spark svg { width: 100%; height: 100%; }
+.sy-sw-t { margin-right: .35rem; }
+.sy-tg { position: relative; display: inline-block; flex: none; width: 34px; height: 20px; border-radius: 99px; background: #c3c3c3; transition: background-color 350ms; }
+.sy-tg > i { position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fcfcfd; box-shadow: 0 1px 3px rgb(16 24 40 / .1), 0 1px 2px rgb(16 24 40 / .06); transition: transform 350ms cubic-bezier(.4, 0, .2, 1); }
+.sy-tg.big { width: 44px; height: 25px; } .sy-tg.big > i { width: 21px; height: 21px; top: 2px; left: 2px; }
+.is-on .sy-tg { background: #34c759; }
+.is-on .sy-tg > i { transform: translateX(14px); } .is-on .sy-tg.big > i { transform: translateX(19px); }
+
+/* the stage */
+.sy-stage { position: relative; display: grid; grid-template-columns: minmax(0, 30fr) minmax(0, 7fr) minmax(0, 60fr); align-items: center; margin-top: clamp(2.4rem, 5vw, 3.6rem); padding: clamp(1.5rem, 4vw, 4rem) clamp(1rem, 3vw, 3.2rem) clamp(1.5rem, 3.4vw, 3.4rem) clamp(1rem, 4.5vw, 5.4rem); border-radius: 22px; overflow: hidden; isolation: isolate;
+  background: radial-gradient(70% 80% at 60% 30%, rgb(255 255 255 / .16), transparent 70%), #8e9093; transition: background-color 900ms; }
+.sy-stage::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity 900ms; background: radial-gradient(70% 80% at 60% 30%, rgb(255 255 255 / .2), transparent 70%), linear-gradient(180deg, #9fb0bd, #8fa1af); }
+.is-on .sy-stage::before { opacity: 1; }
+.sy-stage::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+/* the wires, and what runs along them once the autopilot is on */
+.sy-wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.sy-wires path { fill: none; stroke-linecap: round; }
+.sy-wires .w { stroke: rgb(255 255 255 / .55); stroke-width: 2; }
+/* pulses run along the wires once the autopilot is on: a soft wide stroke under a bright thin one, no filters */
+.sy-wires .f, .sy-wires .g { stroke-dasharray: 4 96; stroke-dashoffset: 100; opacity: 0; transition: opacity 500ms; animation: sy-run 2.4s linear infinite paused; animation-delay: calc(var(--i) * -.8s); }
+.sy-wires .f { stroke: #fff; stroke-width: 3; } .sy-wires .g { stroke: rgb(255 255 255 / .35); stroke-width: 9; }
+.is-on .sy-wires .f, .is-on .sy-wires .g { opacity: 1; }
+.is-on.sy-vis .sy-wires .f, .is-on.sy-vis .sy-wires .g { animation-play-state: running; }
+@keyframes sy-run { to { stroke-dashoffset: 0; } }
+
+/* the three groups */
+.sy-groups { position: relative; display: flex; flex-direction: column; gap: clamp(1.6rem, 3.6vw, 3.4rem); grid-column: 1; }
+.sy-group { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.4rem, 1vw, .95rem); padding: clamp(.8rem, 1.5vw, 1.4rem) clamp(.6rem, 1.1vw, 1rem) clamp(.6rem, 1.1vw, 1rem); border-radius: clamp(16px, 2vw, 26px); border: 2px solid rgb(255 255 255 / .5); background: rgb(255 255 255 / .06); }
+.sy-label { position: absolute; top: 0; left: 50%; transform: translate(-50%, -55%); white-space: nowrap; padding: .35em .8em; border-radius: 999px; background: #fff; color: #111; font-size: clamp(.72rem, 1.05vw, 1rem); letter-spacing: -.02em; box-shadow: 0 4px 12px -6px rgb(0 0 0 / .4); }
+.sy-ic { display: block; aspect-ratio: 1; border-radius: 22%; overflow: hidden; background: #fff; box-shadow: 0 8px 18px -10px rgb(0 0 0 / .55), 0 0 0 1px rgb(0 0 0 / .04); transition: transform 300ms var(--ease); }
+.sy-ic:hover { transform: translateY(-3px); }
+.sy-ic svg { display: block; width: 100%; height: 100%; }
+.sy-ic .fm-ic-wrap .fm-mask { width: 64%; height: 64%; }
+.sy-folder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7%; padding: 10%; background: linear-gradient(180deg, rgb(255 255 255 / .7), rgb(255 255 255 / .5)); }
+.sy-folder > span { display: block; aspect-ratio: 1; border-radius: 24%; overflow: hidden; background: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / .2); }
+.sy-folder svg { display: block; width: 100%; height: 100%; }
+
+/* the laptop, open, in space grey */
+.sy-lap { position: relative; grid-column: 3; margin: 0 5.5%; }
+.sy-lid { position: relative; border-radius: 18px 18px 4px 4px; background: linear-gradient(180deg, #3a3d42, #1d1f23); }
+.sy-screen { position: relative; aspect-ratio: 16 / 10; border: clamp(6px, .8vw, 11px) solid #0c0d0f; border-bottom-width: clamp(10px, 1.4vw, 20px); border-radius: clamp(10px, 1.3vw, 18px) clamp(10px, 1.3vw, 18px) 4px 4px; overflow: hidden; background: #000; box-shadow: inset 0 0 0 1px #2a2c30; }
+.sy-notch { position: absolute; top: -1px; left: 50%; z-index: 9; width: 9%; height: 3.2%; min-height: 8px; transform: translateX(-50%); border-radius: 0 0 8px 8px; background: #0c0d0f; }
+.sy-fit { position: absolute; top: 0; left: 0; width: 1280px; height: 800px; transform: scale(var(--s, .5)); transform-origin: 0 0; }
+.sy-deck { position: relative; height: 0; margin: 0 -7%; padding-bottom: 2.6%; border-radius: 2px 2px 22px 22px / 2px 2px 14px 14px; background: linear-gradient(180deg, #8a8d93 0%, #4a4d53 22%, #2a2c30 55%, #17181b 100%); box-shadow: 0 30px 50px -20px rgb(20 30 40 / .6); }
+.sy-deck > span { position: absolute; top: 0; left: 50%; width: 14%; height: 45%; transform: translateX(-50%); border-radius: 0 0 10px 10px; background: linear-gradient(#1b1c1f, #2c2e33); }
+
+/* ---------------------------------------------------------------- inside the screen */
+.sy-canvas { position: absolute; inset: 0; overflow: hidden; font-family: "Roboto", "Helvetica Neue", Arial, sans-serif; font-size: 14px; color: #2b2d31; letter-spacing: 0;
+  background: radial-gradient(60% 60% at 80% 20%, rgb(255 255 255 / .35), transparent 70%), linear-gradient(135deg, #7d93a3 0%, #a9bccb 50%, #8ea3b3 100%); }
+.sy-canvas table { border-collapse: collapse; width: 100%; }
+/* off → on: the desktop sinks away first, then the app rises; back again without the wait */
+.sy-desk, .sy-app { position: absolute; inset: 0; transition: opacity 450ms ease, transform 600ms cubic-bezier(.3, .1, .2, 1); will-change: opacity, transform; }
+.is-on .sy-desk { opacity: 0; transform: translateY(14px) scale(.97); }
+.sy-app { opacity: 0; transform: translateY(18px) scale(.98); }
+.is-on .sy-app { opacity: 1; transform: none; transition-delay: 260ms; }
+
+/* off: the desktop */
+.sy-files { position: absolute; top: 14px; left: 0; right: 0; display: flex; justify-content: space-around; padding: 0 40px; }
+.sy-files span { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 110px; font-size: 11px; color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / .5); }
+.sy-files i { position: relative; width: 34px; height: 42px; border-radius: 3px; background: #fff; box-shadow: 0 2px 4px rgb(0 0 0 / .25); }
+.sy-files i::after { content: ""; position: absolute; left: 4px; right: 4px; bottom: 5px; height: 8px; border-radius: 2px; background: #2b7cd3; }
+.sy-files i.x::after { background: #107c41; } .sy-files i.p::after { background: #e5322d; }
+.sy-w { position: absolute; overflow: hidden; border-radius: 10px; background: #fff; box-shadow: 0 24px 50px -18px rgb(20 35 50 / .6), 0 0 0 1px rgb(0 0 0 / .08); }
+.sy-tt { display: flex; align-items: center; gap: 9px; height: 36px; padding: 0 12px; background: #f3f4f6; border-bottom: 1px solid #e3e5e8; font-size: 13px; }
+.sy-tt b { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sy-tt.sap { background: #0a6ed1; color: #fff; border: 0; } .sy-tt.xl { background: #107c41; color: #fff; border: 0; } .sy-tt.tm { background: #464eb8; color: #fff; border: 0; }
+.sy-sic { display: inline-grid; flex: none; width: 22px; height: 22px; border-radius: 5px; overflow: hidden; background: #fff; }
+.sy-sic svg { width: 100%; height: 100%; display: block; } .sy-sic .fm-mask { width: 70%; height: 70%; }
+.sy-dots { margin-left: auto; display: inline-flex; gap: 6px; } .sy-dots i { width: 9px; height: 9px; border-radius: 50%; background: rgb(0 0 0 / .18); }
+.sy-badge { position: absolute; top: 8px; right: 70px; padding: 1px 8px; border-radius: 99px; background: #e5322d; color: #fff; font-size: 12px; font-style: normal; }
+
+.sy-ol { left: 26px; top: 92px; width: 520px; height: 560px; }
+.sy-olb { display: grid; grid-template-columns: 130px 1fr; height: calc(100% - 36px); }
+.sy-olb nav { display: flex; flex-direction: column; gap: 10px; padding: 14px 12px; background: #f7f8fa; border-right: 1px solid #eceef1; font-size: 12.5px; color: #555; }
+.sy-olb nav b { font-weight: 500; color: #0f6cbd; } .sy-olb u { text-decoration: none; float: right; color: #0f6cbd; }
+.sy-olb ul { list-style: none; margin: 0; padding: 0; }
+.sy-olb li { display: grid; grid-template-columns: 1fr auto; padding: 9px 14px; border-bottom: 1px solid #f0f1f3; font-size: 12.5px; }
+.sy-olb li b { font-weight: 400; } .sy-olb li span { grid-column: 1; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sy-olb li time { grid-row: 1; grid-column: 2; color: #888; font-size: 11.5px; }
+.sy-olb li.u { box-shadow: inset 3px 0 #0f6cbd; } .sy-olb li.u b { font-weight: 600; } .sy-olb li.u span { color: #222; }
+.sy-sap { left: 760px; top: 470px; width: 470px; height: 260px; }
+.sy-sap td, .sy-sap th { padding: 7px 12px; border-bottom: 1px solid #e8eaed; font-size: 12.5px; text-align: left; }
+.sy-sap th { background: #eef3f8; color: #2a4d6e; font-weight: 500; }
+.sy-xl { left: 880px; top: 84px; width: 380px; height: 430px; }
+.sy-grid { display: grid; grid-template-columns: 26px repeat(4, 1fr); font-size: 12px; }
+.sy-grid span { padding: 5px 7px; border-right: 1px solid #e3e5e8; border-bottom: 1px solid #e3e5e8; white-space: nowrap; overflow: hidden; }
+.sy-grid .h { background: #f3f4f6; color: #777; text-align: center; }
+.sy-grid .y { background: #fff3b0; } .sy-grid .r { background: #ffd6d2; }
+.sy-tm { left: 600px; top: 300px; z-index: 2; width: 440px; height: 320px; }
+.sy-chat { display: flex; flex-direction: column; gap: 14px; height: calc(100% - 36px); padding: 16px; background: #f5f5f8; }
+.sy-chat p { display: flex; gap: 10px; margin: 0; font-size: 13px; }
+.sy-chat p i { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 50%; background: #c5c8f0; color: #3b40a0; font-size: 11px; font-style: normal; font-weight: 600; }
+.sy-chat p span { padding: 7px 11px; border-radius: 8px; background: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / .08); }
+.sy-chat p b { display: block; font-size: 11.5px; font-weight: 600; color: #555; }
+.sy-input { margin-top: auto; padding: 10px 12px; border-radius: 6px; background: #fff; border-bottom: 2px solid #5b5fc7; color: #999; font-size: 12.5px; }
+.sy-pdf { left: 270px; top: 150px; z-index: 1; width: 350px; height: 640px; }
+.sy-page { padding: 22px 26px; }
+.sy-ph { display: flex; flex-direction: column; gap: 4px; padding-bottom: 12px; margin-bottom: 14px; border-bottom: 3px solid #111; }
+.sy-ph b { font-size: 17px; font-weight: 800; letter-spacing: .02em; } .sy-ph span { font-size: 12px; color: #555; }
+.sy-pdf td { padding: 6px 4px; border-bottom: 1px solid #ddd; font-size: 12px; } .sy-pdf td + td { text-align: right; font-weight: 500; }
+.sy-lines { display: flex; flex-direction: column; gap: 7px; margin-top: 18px; } .sy-lines i { height: 6px; border-radius: 2px; background: #e4e5e8; }
+.sy-pings { position: absolute; top: 60px; right: 18px; display: flex; flex-direction: column; gap: 8px; width: 330px; z-index: 5; }
+.sy-ping { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: rgb(250 250 252 / .97); box-shadow: 0 12px 28px -12px rgb(0 0 0 / .45); font-size: 12.5px; animation: sy-ping 6s calc(var(--i) * 1.1s) infinite both paused; }
+.sy-vis:not(.is-on) .sy-ping { animation-play-state: running; }
+.sy-ping span { display: flex; flex-direction: column; min-width: 0; } .sy-ping b { font-weight: 600; } .sy-ping time { margin-left: auto; align-self: flex-start; color: #888; font-size: 11px; }
+@keyframes sy-ping { 0% { opacity: 0; transform: translateX(30px); } 8%, 80% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; transform: translateX(30px); } }
+
+/* on: the Biesterfeld screen */
+.sy-app { display: grid; grid-template-columns: 200px 1fr; inset: 56px 64px; border-radius: 12px; background: #fff; overflow: hidden; box-shadow: 0 30px 60px -24px rgb(20 35 50 / .6); }
+.sy-app aside { display: flex; flex-direction: column; gap: 6px; padding: 18px 14px; border-right: 1px solid #eceef1; font-size: 12.5px; color: #555; }
+.sy-logo { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 14px; } .sy-logo b { font-weight: 600; color: #222; } .sy-logo .fm-mask { width: 22px; height: 22px; }
+.sy-app aside p { display: flex; align-items: center; gap: 7px; margin: 10px 0 2px; font-weight: 500; color: #222; }
+.sy-app aside span { padding: 5px 8px 5px 26px; border-radius: 6px; }
+.sy-app aside span.on { background: #f3f4f6; color: #111; font-weight: 500; box-shadow: inset 2px 0 #cb3f1d; }
+.sy-me { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 12px; border-top: 1px solid #eceef1; }
+.sy-me i { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #f3e1db; color: #a8311a; font-style: normal; font-size: 11px; font-weight: 600; }
+.sy-me b { display: block; font-size: 12px; font-weight: 500; color: #222; } .sy-me small { font-size: 11px; color: #888; }
+.sy-app main { display: flex; flex-direction: column; gap: 14px; min-width: 0; padding: 16px 22px; }
+.sy-crumb { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 500; }
+.sy-tabs { display: flex; gap: 6px; font-size: 12px; } .sy-tabs > * { padding: 4px 10px; border-radius: 6px; color: #666; } .sy-tabs b { background: #f3f4f6; color: #111; font-weight: 500; }
+.sy-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 760px; }
+.sy-kpis div { display: grid; grid-template-columns: 1fr auto; padding: 9px 12px; border: 1px solid #e6e8eb; border-radius: 8px; }
+.sy-kpis b { font-size: 16px; font-weight: 500; } .sy-kpis em { font-style: normal; font-size: 12px; color: #444; } .sy-kpis small { font-size: 11.5px; color: #888; }
+.sy-tools { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #444; }
+.sy-tools > span { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid #e6e8eb; border-radius: 7px; }
+.sy-tools .sy-search { width: 180px; color: #999; } .sy-tools .r { margin-left: auto; }
+.sy-tools .sy-ap { border: 0; padding: 0; font-weight: 500; color: #111; } .sy-ap .sy-tg { background: #cb3f1d !important; }
+.sy-tbl { font-size: 12px; }
+.sy-tbl th { padding: 8px 8px; text-align: left; font-weight: 500; color: #555; border-bottom: 1px solid #e6e8eb; white-space: nowrap; }
+.sy-tbl tr.g th { padding: 6px 8px; font-size: 10.5px; letter-spacing: .06em; color: #888; background: #fafafb; }
+.sy-tbl tr.g th + th { border-left: 1px solid #e6e8eb; }
+.sy-tbl td { padding: 10px 8px; border-bottom: 1px solid #f0f1f3; white-space: nowrap; max-width: 190px; overflow: hidden; text-overflow: ellipsis; }
+.sy-tbl tbody tr { opacity: 0; transform: translateY(6px); transition: opacity 400ms, transform 500ms var(--ease); }
+.is-on .sy-tbl tbody tr { opacity: 1; transform: none; transition-delay: calc(500ms + var(--i) * 110ms); }
+.sy-cat { display: inline-flex; align-items: center; gap: 4px; font-weight: 500; } .sy-cat .ph-light { font-size: 10px; color: #999; }
+.sy-av, .sy-st { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 500; }
+.sy-av.ok, .sy-st.ok { background: #e3f5e9; color: #1d7a3e; } .sy-av.part, .sy-st.ask { background: #fdf0d9; color: #9a6200; } .sy-av.no { background: #fde5e2; color: #b42318; }
+.sy-st.done { background: #eef0f3; color: #555; }
+.sy-btn { display: inline-block; padding: 4px 10px; border: 1px solid #dfe1e5; border-radius: 6px; font-weight: 500; }
+.sy-foot { display: flex; margin-top: auto; font-size: 12px; color: #666; } .sy-foot .r { margin-left: auto; } .sy-foot b { padding: 1px 7px; border: 1px solid #dfe1e5; border-radius: 5px; font-weight: 500; }
+
+/* phones and tablets: the groups above in a row, the laptop under them, no wires */
+@media (max-width: 900px) {
+  .sy-stage { grid-template-columns: 1fr; gap: 2.2rem; padding: 2.4rem 1rem 1.6rem; }
+  .sy-groups { flex-direction: row; gap: .6rem; }
+  .sy-group { flex: 1; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 1.1rem .5rem .5rem; border-radius: 14px; }
+  .sy-label { font-size: 10.5px; padding: .3em .6em; }
+  .sy-wires { display: none; }
+  .sy-lap { grid-column: 1; margin: 0 6%; }
+}
+@media (max-width: 520px) { .sy-label { white-space: normal; text-align: center; line-height: 1.15; width: max-content; max-width: 92%; } .sy-group { padding-top: 1.6rem; } }
+/* back to off unseen, so the flip plays again next time */
+#systems.sy-snap, #systems.sy-snap * { transition: none !important; }
+@media (prefers-reduced-motion: reduce) { .sy-ping { animation: none; opacity: 1; } .is-on .sy-wires .f { animation: none; opacity: 0; } }

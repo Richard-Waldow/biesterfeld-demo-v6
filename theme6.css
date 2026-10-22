@@ -1,0 +1,137 @@
+/* Version 6: the light version, a mix of biesterfeld.com and GeneralMind.
+   From biesterfeld.com: white pages with light blue-grey bands (#edf4f7, #e2ecf0), Roboto Light headings, the red
+   #cb3f1d for emphasis, steel blue #528eb3 for small labels, dark grey text #444, nearly square corners, the hexagon
+   motif, red square arrow buttons, large pale blue numbers.
+   From GeneralMind: big airy headings, generous space, the blue-grey stages for the film, systems and layer.
+   The page's own styles come from the light copies (make-light.py); this file sets the tokens and the details.
+   Loaded last. */
+:root {
+  --font: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif; --mono: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --bg: #ffffff; --surface: #ffffff; --surface-2: #f6f9fb; --surface-3: #eef3f6;
+  --band: #edf4f7; --band-2: #e2ecf0;
+  --fg: 20 36 48; --shade: 20 36 48;
+  --line: rgb(20 36 48 / .1); --line-2: rgb(20 36 48 / .16);
+  --ink: #1e2830; --ink-2: #4f5a63; --ink-3: #85909a;
+  --d: #cb3f1d; --d-rgb: 203 63 29; --d-deep: #a8311a; --d-soft: #fbeae5; --d-ink: #b8381a; --d-hover: #b3361a; --on-d: #ffffff;
+  --s: #528eb3; --s-rgb: 82 142 179; --s-deep: #335978; --s-soft: #e2ecf0;
+  --r: 8px;
+  --hex: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 0l28 16.2v32.3L28 64.7 0 48.5V16.2zM28 64.7l28 16.2v32.3M0 80.9l28-16.2' fill='none' stroke='%23528eb3' stroke-opacity='.16' stroke-width='1'/%3E%3C/svg%3E");
+}
+html, body { background: var(--bg); color: var(--ink); }
+body { font-weight: 400; -webkit-font-smoothing: antialiased; }
+::selection { background: rgb(var(--d-rgb) / .18); }
+
+/* type: Roboto Light headings in dark ink, the key words in red, labels in steel blue */
+h1, h2, .h2 { font-weight: 300; letter-spacing: -.025em; color: var(--ink); }
+.h2 em, h2 em { font-style: normal; color: var(--d); }
+b, strong { font-weight: 500; }
+.ly-eyebrow, .uc-eyebrow, .sy-eyebrow, .hero-eyebrow { color: var(--s-deep); }
+.ly-eyebrow { background: var(--s-soft); border-color: rgb(var(--s-rgb) / .35); color: var(--s-deep); border-radius: 4px; }
+.ly-lead, p { color: var(--ink-2); }
+
+/* the header: white, the logo, grey navigation with a red underline, like biesterfeld.com */
+.top { background: rgb(255 255 255 / .92); border-bottom: 1px solid var(--line); box-shadow: 0 1px 0 rgb(255 255 255 / .6); }
+.top .brand span { color: var(--ink); font-weight: 400; }
+.nav a { color: var(--ink-2); }
+.nav a:hover, .nav a.on, .nav a[aria-current] { color: var(--d); }
+.lang { background: var(--surface-2); border-color: var(--line); }
+.lang button { color: var(--ink-3); } .lang button.on, .lang button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+
+/* buttons: red and squared, like the site's arrow buttons */
+.btn { border-radius: 4px; }
+.btn-primary { background: var(--d); color: #fff; } .btn-primary:hover { background: var(--d-hover); }
+.btn-quiet { color: var(--ink); border-color: var(--line-2); background: #fff; }
+
+/* sections alternate white and the light blue-grey band of the site */
+#brief, #plan, #how, #play, #proof, #start { background: var(--band); }
+.sec { border-top: 0; }
+.foot { background: #58585a; color: #e8e8ea; border-top: 0; }
+.foot a { color: #fff; }
+#workday { background: var(--band); }
+
+/* the header: a white floating bar with the real logo colours */
+.top { border-radius: var(--pill); box-shadow: 0 12px 34px -20px rgb(20 36 48 / .45); }
+.brand img { filter: none; height: 24px; }
+
+/* the hero: the site's hexagon motif, fading out from the top, and a warm light behind the headline */
+.v5-hero { position: relative; isolation: isolate; background: radial-gradient(55% 38% at 50% 8%, rgb(var(--d-rgb) / .09), transparent 70%), linear-gradient(180deg, #fff 0%, var(--band) 100%); }
+.v5-hero::before { content: ""; position: absolute; inset: 0 0 35% 0; z-index: -1; background: var(--hex); -webkit-mask: radial-gradient(70% 90% at 50% 0%, #000, transparent 75%); mask: radial-gradient(70% 90% at 50% 0%, #000, transparent 75%); }
+.v5-h1 { font-weight: 300; letter-spacing: -.04em; }
+.v5-sub { color: var(--ink-2); font-weight: 300; }
+.fm-stage { box-shadow: 0 50px 100px -60px rgb(20 36 48 / .55), 0 0 0 1px rgb(20 36 48 / .06); }
+
+/* the problem: lighter type like the site */
+.v5-ph { font-weight: 300; }
+#problem .side h2 { font-weight: 300; }
+#problem { background: #fff; }
+
+/* large pale numbers with a red label, like the site's facts and figures */
+.pf-stat { background: #fff; border-color: var(--line-2); }
+.pf-stat b { font-family: var(--font); font-weight: 700; color: #a9c6d6; letter-spacing: -.04em; }
+.pf-stat span { color: var(--d); font-weight: 500; }
+
+/* every stage keeps its GeneralMind blue-grey, framed softly on the white page */
+.sy-stage, .uc-vis, .ly-stage, .fm-stage { border-radius: 14px; }
+
+/* use case arrows: a dark round button with a white arrow, as in version 5 */
+.uc-arrow { background: var(--ink); color: #fff; box-shadow: 0 10px 24px -10px rgb(20 36 48 / .5); }
+.uc-arrow:hover { background: #000; }
+
+/* the product: "click to interact" as a red button, the veil light */
+.play-overlay { background: linear-gradient(transparent 55%, rgb(20 36 48 / .14)); }
+.play-overlay span { background: var(--d); border-color: var(--d); color: #fff; font-weight: 500; backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: 0 16px 36px -14px rgb(var(--d-rgb) / .7); }
+.play-overlay span .ph-light { color: #fff; }
+.play-overlay:hover span { background: var(--d-hover); }
+
+/* labels and quote cards keep the rounded shapes of version 5 */
+.ly-eyebrow { border-radius: var(--pill); }
+.pf-stat, .pf-q { border-radius: 18px; }
+.pf-q { box-shadow: 0 14px 36px -26px rgb(20 36 48 / .45); }
+.pf-tag { background: var(--s-soft); border-color: rgb(var(--s-rgb) / .35); color: var(--s-deep); }
+.pf-tag .ph-light { color: var(--s); }
+
+/* customisation in the site's palette: steel blue for what is switched on, white cards, red only for the result */
+.cu-base, .cu-cust, .cu-res { border-radius: 14px; background: #fff; border: 1px solid var(--line-2); box-shadow: 0 18px 44px -32px rgb(20 36 48 / .35); }
+.cu-cust > small, .cu-base > small { color: var(--s-deep); }
+.cu-tile { border-color: color-mix(in srgb, var(--line), rgb(var(--s-rgb) / .5) calc(var(--on) * 100%)); background: color-mix(in srgb, #fff, var(--band) calc(var(--on) * 100%)); color: color-mix(in srgb, var(--ink-3), var(--ink) calc(var(--on) * 100%)); }
+.cu-tile .ph-light { color: color-mix(in srgb, var(--ink-3), var(--s-deep) calc(var(--on) * 100%)); }
+.cu-item { border-color: color-mix(in srgb, var(--line), rgb(var(--s-rgb) / .45) calc(var(--on) * 100%)); background: color-mix(in srgb, #fff, #f7fafc calc(var(--on) * 100%)); }
+.cu-item > .ph-light { background: color-mix(in srgb, var(--surface-3), var(--s-soft) calc(var(--on) * 100%)); color: color-mix(in srgb, var(--ink-3), var(--s-deep) calc(var(--on) * 100%)); }
+.cu-sw { background: color-mix(in srgb, #c9cfd5, #34c759 calc(var(--on) * 100%)); }
+.cu-more { background: #fff; border-color: rgb(var(--s-rgb) / .4); box-shadow: 0 18px 40px -18px rgb(20 36 48 / .35); color: var(--ink-2); }
+.cu-op { color: color-mix(in srgb, var(--ink-3), var(--s-deep) calc(var(--p) * 100%)); text-shadow: none; }
+.cu-res { position: relative; overflow: hidden; border-color: color-mix(in srgb, var(--line-2), rgb(var(--d-rgb) / .45) calc(var(--on) * 100%)); background: linear-gradient(180deg, color-mix(in srgb, #fff, var(--band) calc(var(--on) * 100%)), #fff 55%); box-shadow: 0 24px 60px -36px rgb(20 36 48 / calc(.3 + var(--on) * .25)); }
+.cu-res::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--d); transform: scaleX(var(--on)); transform-origin: 0 50%; }
+.cu-res > small { color: var(--d); }
+.cu-app { box-shadow: 0 16px 36px -22px rgb(20 36 48 / .45), 0 0 0 1px var(--line); }
+
+/* the factor cards: on hover they lift, stay white and take the colour of their side */
+.factors > li.fx:hover, .factors > li.fx:focus-visible, .factors > li.fx.open { background: #fff; border-color: rgb(var(--d-rgb) / .4); box-shadow: 0 18px 40px -22px rgb(20 36 48 / .45); }
+.side-s .factors > li.fx:hover, .side-s .factors > li.fx:focus-visible, .side-s .factors > li.fx.open { border-color: rgb(var(--s-rgb) / .5); }
+.fx-pop { background: #fff; }
+
+/* the workday's granules: one colour per category */
+.b-d .wd-pile i { background: radial-gradient(circle at 35% 30%, #f6b3a0, #d9502e 45%, #b8381a 80%); }
+.b-s .wd-pile i { background: radial-gradient(circle at 35% 30%, #c9e2f2, #4a93c8 45%, #2c6e9f 80%); }
+.b-x .wd-pile i { background: radial-gradient(circle at 35% 30%, #fff1b0, #f4c430 45%, #d39a12 80%); }
+.b-f .wd-pile i { border-color: #4cb860; }
+
+/* #problem: every factor card the same width, the middle as a picture */
+@media (min-width: 961px) { #problem .sides { grid-template-columns: minmax(0, 1fr) minmax(220px, .62fr) minmax(0, 1fr); align-items: center; } }
+#problem .factors > li { width: 100%; }
+#problem .side-s .factors { align-items: stretch; }
+.gl6 { --pulse: .5; max-width: none; margin: 4.5rem 0 0; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+.gl6-stage { position: relative; width: 100%; height: 150px; }
+.gl6-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.gl6-core { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: #fff; border: 1px solid var(--line-2); color: var(--ink); font-size: 28px;
+  box-shadow: 0 12px 30px -14px rgb(20 36 48 / .5), 0 0 0 calc(4px + var(--pulse) * 8px) rgb(var(--d-rgb) / calc(.14 - var(--pulse) * .1)); }
+.gl6-core b { position: absolute; top: -6px; right: -6px; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--d); color: #fff; font-size: 13px; font-weight: 700; transform: rotate(calc((var(--pulse) - .5) * 24deg)); }
+.gl6-txt { margin: 0; max-width: 17ch; font-size: clamp(1.15rem, 1.6vw, 1.4rem); font-weight: 300; line-height: 1.35; text-align: center; color: var(--ink); text-wrap: balance; }
+.gl6-txt b { font-weight: 500; } .gl6-txt em { font-style: normal; font-weight: 500; color: var(--d); }
+#problem .glue.gl6 { max-width: none; width: 100%; justify-self: stretch; align-self: center; margin: 0; }
+
+/* narrow: the sentence under both columns, full width */
+@media (max-width: 960px) { #problem .glue.gl6 { display: block; grid-column: 1 / -1; order: 3; margin-top: 1.4rem; } #problem .gl6-txt { max-width: 26ch; margin: 0 auto; } }
+
+/* the sentence stays readable when pellets pass behind it */
+#problem .gl6-txt { position: relative; z-index: 1; text-shadow: 0 0 14px #fff, 0 0 6px #fff, 0 0 2px #fff; }

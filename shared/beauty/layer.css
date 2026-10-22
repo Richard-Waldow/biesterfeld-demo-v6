@@ -1,0 +1,109 @@
+/* #layer (Autopilot for Sales: one layer on top of the existing systems) and #plan (the opportunity timeline). Page tokens from version-beauty/style.css. */
+.sec-layer, .sec-plan { overflow: hidden; }
+.ly-eyebrow { display: inline-flex; align-items: center; gap: .5rem; margin: 0 0 1.1rem; padding: .38rem .9rem .38rem .7rem; border-radius: var(--pill); border: 1px solid rgb(var(--d-rgb) / .35); background: rgb(var(--d-rgb) / .08); color: var(--d-ink); font-size: 13px; font-weight: 500; letter-spacing: .02em; }
+.ly-eyebrow .ph-light { font-size: 16px; color: var(--d); }
+.ly-h, .pl-h { max-width: 22ch; margin: 0; }
+.ly-lead { max-width: 62ch; margin: 1.1rem 0 0; color: var(--ink-2); font-size: clamp(1rem, 1.3vw, 1.15rem); line-height: 1.55; }
+.ly-lead b { color: var(--ink); font-weight: 500; }
+
+/* the stage: data on the left, the core in the middle, the sales loop on the right */
+.ly-stage { position: relative; display: grid; grid-template-columns: minmax(190px, 1fr) minmax(0, 400px) minmax(250px, 1fr); align-items: center; gap: 2rem; margin-top: clamp(2.5rem, 5vw, 4rem); min-height: 440px; }
+.ly-wires { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.ly-w { fill: none; stroke: rgb(255 255 255 / .2); stroke-width: 1.2; stroke-dasharray: 3 5; transition: stroke 300ms var(--ease); }
+.ly-wf { fill: none; stroke: var(--d); stroke-width: 1.6; stroke-dasharray: 2 26; stroke-linecap: round; opacity: .55; animation: ly-flow 2.2s linear infinite; transition: opacity 300ms var(--ease); }
+.ly-w.on { stroke: rgb(var(--d-rgb) / .7); } .ly-wf.on { opacity: 1; stroke-width: 2.2; }
+@keyframes ly-flow { to { stroke-dashoffset: -28; } }
+
+.ly-src { position: relative; z-index: 2; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.5rem; }
+.ly-s { position: relative; outline: none; }
+.ly-st { display: inline-flex; align-items: center; gap: .5rem; min-width: min(230px, 100%); padding: 0 0 .6rem; border-bottom: 1px solid rgb(255 255 255 / .55); font-size: 1.12rem; letter-spacing: -.01em; color: var(--ink); cursor: default; transition: color 250ms var(--ease), border-color 250ms var(--ease); }
+.ly-st .ph-light { font-size: 14px; color: var(--ink-3); margin-left: auto; transition: color 250ms var(--ease); }
+.ly-s:hover .ly-st, .ly-s:focus-visible .ly-st { color: var(--d-ink); border-color: var(--d); }
+.ly-s:hover .ly-st .ph-light, .ly-s:focus-visible .ly-st .ph-light { color: var(--d); }
+.ly-pop { position: absolute; left: 0; top: calc(100% + 10px); z-index: 6; width: 320px; padding: .9rem 1rem; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--line-2); box-shadow: 0 24px 50px -20px rgb(0 0 0 / .9);
+  display: flex; flex-direction: column; gap: .65rem; opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity 200ms var(--ease), transform 200ms var(--ease), visibility 0s 200ms; }
+.ly-s:hover .ly-pop, .ly-s:focus-within .ly-pop { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.ly-pop small { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.ly-pi { display: flex; align-items: center; gap: .7rem; }
+.ly-pic { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 9px; background: rgb(255 255 255 / .06); border: 1px solid var(--line); font-size: 17px; color: var(--ink-2); }
+.ly-pi > span:last-child { display: flex; flex-direction: column; min-width: 0; }
+.ly-pi b { font-size: 13.5px; font-weight: 500; } .ly-pi em { font-style: normal; font-size: 12.5px; color: var(--ink-2); }
+.ly-logo { display: block; width: 18px; height: 18px; background: var(--ink-2); -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; }
+
+/* the core: three rings, the engine in the middle, callouts for what it spots */
+.ly-core { position: relative; z-index: 1; justify-self: center; width: min(400px, 100%); aspect-ratio: 1; }
+.ly-ring { position: absolute; left: 50%; top: 50%; border-radius: 50%; transform: translate(-50%, -50%); border: 1px solid rgb(255 255 255 / .13); pointer-events: none; }
+.ly-ring.r1 { width: 100%; height: 100%; background: radial-gradient(closest-side, rgb(var(--d-rgb) / .1), transparent 70%); }
+.ly-ring.r1::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: repeating-linear-gradient(135deg, rgb(255 255 255 / .09) 0 1px, transparent 1px 7px);
+  -webkit-mask: conic-gradient(from 95deg, #000 0 80deg, transparent 80deg), radial-gradient(closest-side, transparent 84%, #000 85%); -webkit-mask-composite: source-in; mask: conic-gradient(from 95deg, #000 0 80deg, transparent 80deg) intersect, radial-gradient(closest-side, transparent 84%, #000 85%); }
+.ly-ring.r2 { width: 70%; height: 70%; }
+.ly-ring.r3 { width: 40%; height: 40%; border-color: rgb(255 255 255 / .2); animation: ly-pulse 3.6s var(--ease-io) infinite; }
+@keyframes ly-pulse { 50% { transform: translate(-50%, -50%) scale(1.06); border-color: rgb(var(--d-rgb) / .45); } }
+.ly-in { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 34%; aspect-ratio: 1; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .3rem;
+  background: radial-gradient(circle at 35% 30%, #1d2026, #0d0f12 70%); border: 1.5px solid rgb(255 255 255 / .75); box-shadow: 0 0 0 8px rgb(var(--d-rgb) / .06), 0 20px 50px -20px rgb(var(--d-rgb) / .6); text-align: center; }
+.ly-in .ph-light { font-size: 30px; color: var(--d); }
+.ly-in b { font-size: 12.5px; font-weight: 600; line-height: 1.15; letter-spacing: .01em; }
+.ly-call { position: absolute; z-index: 2; display: flex; flex-direction: column; gap: .2rem; padding-bottom: .4rem; border-bottom: 1px solid rgb(255 255 255 / .4); outline: none; }
+.ly-call b { font-size: 1.15rem; font-weight: 500; letter-spacing: -.01em; }
+.ly-call small { font-size: 12.5px; color: var(--ink-2); max-width: 24ch; }
+.ly-call.c-risk { left: -6%; top: -4%; }
+.ly-call.c-ctx { right: -26%; top: 22%; }
+.ly-call.c-ctx b { font-size: 1rem; color: var(--ink-2); font-weight: 400; }
+.ly-call.c-opp { right: -34%; bottom: -2%; }
+.ly-call::before { content: ""; position: absolute; width: 26px; height: 1px; background: rgb(255 255 255 / .4); }
+.ly-call.c-risk::before { right: -24px; bottom: -1px; transform-origin: left; transform: rotate(40deg); }
+.ly-call.c-ctx::before, .ly-call.c-opp::before { left: -24px; bottom: -1px; transform-origin: right; transform: rotate(-40deg); }
+.ly-call.c-opp::before { transform: rotate(40deg); }
+
+/* the arrow into the sales loop */
+.ly-out { position: relative; z-index: 1; display: flex; align-items: center; gap: 0; min-width: 0; }
+.ly-arrow { position: relative; flex: 1; min-width: 50px; height: 1px; background: rgb(255 255 255 / .55); margin-right: 6px; }
+.ly-arrow::after { content: ""; position: absolute; right: -2px; top: -4px; border-left: 8px solid rgb(255 255 255 / .8); border-top: 4.5px solid transparent; border-bottom: 4.5px solid transparent; }
+.ly-arrow em { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); font-style: normal; font-size: 1.05rem; color: var(--ink-2); white-space: nowrap; }
+.ly-loop { position: relative; flex: none; width: 200px; aspect-ratio: 1; }
+.ly-loop svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.ly-arc { fill: none; stroke: rgb(255 255 255 / .55); stroke-width: 1.2; }
+.ly-loop marker path { fill: rgb(255 255 255 / .8); }
+.ly-loop svg { animation: ly-spin 40s linear infinite; }
+@keyframes ly-spin { to { transform: rotate(360deg); } }
+.ly-icons { position: absolute; inset: 28%; display: grid; grid-template-columns: 1fr 1fr; place-items: center; gap: .4rem; }
+.ly-icons span { display: grid; place-items: center; font-size: 26px; color: var(--ink-2); }
+.ly-icons .ly-logo { width: 30px; height: 30px; }
+.ly-lt { position: absolute; font-size: 1rem; color: var(--ink-2); white-space: nowrap; }
+.ly-lt.t1 { right: -18%; top: -6%; } .ly-lt.t2 { left: 50%; bottom: -16%; transform: translateX(-50%); } .ly-lt.t3 { right: -34%; bottom: 10%; }
+
+/* 01 02 03 */
+.ly-steps { list-style: none; margin: clamp(3rem, 6vw, 4.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.ly-steps span { display: block; font-family: var(--mono); font-size: clamp(3rem, 6vw, 4.6rem); letter-spacing: -.06em; line-height: 1; color: rgb(255 255 255 / .16); }
+.ly-steps p { margin: .9rem 0 0; font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.4; color: var(--ink-2); max-width: 28ch; }
+.ly-steps b { color: var(--ink); font-weight: 500; }
+
+/* the timeline section */
+.pl-chart { margin-top: clamp(2rem, 4vw, 3rem); }
+.pl-chart .gx-scroll { border-radius: var(--r); }
+.pl-foot { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; margin-top: 1.4rem; }
+.pl-foot small { font-size: 13px; color: var(--ink-3); }
+
+@media (max-width: 1180px) {
+  .ly-stage { grid-template-columns: minmax(180px, 1fr) minmax(0, 340px) minmax(220px, .9fr); }
+  .ly-call.c-ctx { right: -14%; } .ly-call.c-opp { right: -18%; }
+}
+@media (max-width: 960px) {
+  .ly-stage { grid-template-columns: 1fr; gap: 2.4rem; min-height: 0; }
+  .ly-wires { display: none; }
+  .ly-src { flex-direction: row; flex-wrap: wrap; gap: 1rem 1.4rem; }
+  .ly-st { min-width: 0; font-size: 1rem; }
+  .ly-pop { width: min(300px, calc(100vw - 2rem)); }
+  .ly-s:nth-child(n+3) .ly-pop { left: auto; right: 0; }
+  .ly-core { width: min(320px, 82vw); margin-bottom: 7rem; }
+  .ly-call { position: absolute; }
+  .ly-call.c-risk { left: -4%; top: -6%; } .ly-call.c-ctx { display: none; } .ly-call.c-opp { right: auto; left: 30%; bottom: -30%; }
+  .ly-call::before { display: none; }
+  .ly-out { flex-direction: column; gap: 1.2rem; }
+  .ly-arrow { flex: none; width: 1px; min-width: 0; height: 60px; margin: 0; }
+  .ly-arrow::after { right: -4px; top: auto; bottom: -2px; border-left: 4.5px solid transparent; border-right: 4.5px solid transparent; border-top: 8px solid rgb(255 255 255 / .8); border-bottom: 0; }
+  .ly-arrow em { left: 14px; bottom: 50%; transform: translateY(50%); }
+  .ly-loop { width: 180px; margin-bottom: 2rem; }
+  .ly-steps { grid-template-columns: 1fr; gap: 1.6rem; }
+}
+@media (prefers-reduced-motion: reduce) { .ly-wf, .ly-ring.r3, .ly-loop svg { animation: none; } }

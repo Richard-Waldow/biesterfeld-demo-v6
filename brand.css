@@ -1,0 +1,18 @@
+/* Biesterfeld palette for version 1 and 2 (only colours change; layout, type and motion stay as in version-beauty).
+   Taken from biesterfeld.com and the logo: red #CB3F1D (logo swoosh, headlines, links), grey #58585A (logo B),
+   steel blue #528EB3, blue #1D76A0, navy #335978, light blues #C5D9E2 / #E2ECF0 / #EDF4F7. */
+:root {
+  --d: #cb3f1d; --d-rgb: 203 63 29; --d-deep: #a8311a; --d-soft: #2a130d; --d-glow: rgb(203 63 29 / .18);
+  --d-ink: #f0937b;      /* red, lightened for small text on the dark page */
+  --d-hover: #d84a28; --on-d: #ffffff;
+  --s: #528eb3; --s-rgb: 82 142 179; --s-deep: #1d76a0; --s-soft: #101c25;
+  /* demand pellets in Biesterfeld red, supply pellets in the light blues of the site */
+  --pd-hi: #f2a48f; --pd-mid: #d9502e; --pd-lo: #b8381a; --pd-edge: #7a2410; --pd-rim: rgba(255,200,185,.35);
+  --ps-hi: rgba(237,244,247,.98); --ps-mid: rgba(197,217,226,.92); --ps-lo: rgba(117,156,183,.82); --ps-edge: rgba(51,89,120,.78);
+  --ps-dot-mid: #c5d9e2; --ps-dot-lo: #528eb3;
+}
+/* the light product app inside the page */
+.bfa { --a-acc: #cb3f1d; --a-acc-hover: #b3361a; --a-acc-ink: #a8311a; --a-on-acc: #ffffff; --a-acc-rgb: 203 63 29; --a-info: #1d76a0; --a-info-2: #528eb3; }
+
+/* the value heading names the problem and the gain, so it needs more width than the shared 20ch */
+.vl-h { max-width: 30ch; }

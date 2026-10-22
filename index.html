@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0c0f">
+<title>Biesterfeld Demo</title>
+<link rel="icon" href="shared/logos/biesterfeld.svg">
+<link rel="preload" href="shared/fonts/Geist-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="shared/vendor/phosphor/style.css?v=20261020h">
+<link rel="stylesheet" href="shared/beauty/app.css?v=20261020h">
+<link rel="stylesheet" href="sections6.css?v=6a">
+<link rel="stylesheet" href="shared/beauty/ae.css?v=20261020h">
+<link rel="stylesheet" href="gantt6.css?v=6a">
+<link rel="stylesheet" href="workday6.css?v=6a">
+<link rel="stylesheet" href="base6.css?v=6b">
+<link rel="stylesheet" href="brand.css?v=20261020h">
+<link rel="stylesheet" href="layer6.css?v=6a">
+<link rel="stylesheet" href="simple.css?v=6a">
+<link rel="stylesheet" href="layers.css?v=20261021c">
+<link rel="stylesheet" href="custom.css?v=6a">
+<link rel="stylesheet" href="proof.css?v=6a">
+<link rel="stylesheet" href="film.css?v=20261021k">
+<link rel="stylesheet" href="systems.css?v=20261021d">
+<link rel="stylesheet" href="usecase.css?v=6a">
+<link rel="stylesheet" href="pilot.css?v=6a">
+<link rel="stylesheet" href="v5.css?v=6a">
+<link rel="stylesheet" href="theme6.css?v=6j">
+<style>@font-face { font-family: "Roboto"; src: url("shared/fonts/Roboto-var.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }</style>
+<link rel="alternate" hreflang="de" href="https://richard-waldow.github.io/biesterfeld-demo-v6/">
+<link rel="alternate" hreflang="en" href="https://richard-waldow.github.io/biesterfeld-demo-v6/en/">
+</head>
+<body>
+<span id="top-sentinel" aria-hidden="true"></span>
+<header class="top">
+  <a class="brand" href="#what"><img src="shared/logos/biesterfeld.svg" alt=""><span>Biesterfeld Plastic</span></a>
+  <nav class="nav" aria-label="Sections">
+    <a href="#problem" data-t="nav_problem"></a><a href="#brief" data-t="nav_brief"></a><a href="#layer" data-t="nav_layer"></a><a href="#plan" data-t="nav_plan"></a><a href="#value" data-t="value"></a><a href="#how" data-t="nav_demo"></a><a href="#workday" data-t="workday"></a><a href="#play" data-t="product"></a><a href="#custom" data-t="nav_custom"></a><a href="#roadmap" data-t="nav_pilot"></a><a href="#start" data-t="start"></a>
+  </nav>
+  <div class="lang" role="group" aria-label="Language"><button data-lang="de">DE</button><button data-lang="en">EN</button></div>
+</header>
+
+<main>
+  <!-- WHAT: Autopilot for Key Account Managers, and the film with and without autopilot (film.js) -->
+  <section class="v5-hero" id="what">
+    <div class="wrap">
+      <h1 class="v5-h1 reveal" data-t="v5_h1"></h1>
+      <p class="v5-sub reveal" data-t="v5_sub"></p>
+      <div class="v5-cta reveal"><a class="btn btn-primary" href="#play"><span data-t="v5_try"></span><span class="btn-ic"><i class="ph-light ph-arrow-down"></i></span></a><a class="btn btn-quiet" href="#roadmap"><span data-t="v5_pilot"></span></a></div>
+      <div class="v5-film reveal" id="film"></div>
+    </div>
+  </section>
+
+  <!-- THREE KINDS OF SYSTEMS: communication, work, record, wired into a laptop; the Autopilot switch turns the chaos into one screen (systems.js) -->
+  <section class="sec sec-systems" id="systems"></section>
+
+  <!-- THE PROBLEM: the granulate field, demand and supply factors (hero.js, factors.js) -->
+  <section class="hero" id="problem">
+    <canvas id="granules" aria-hidden="true"></canvas>
+    <div class="hero-in wrap">
+      <div class="hero-title">
+        <p class="hero-eyebrow reveal"><i class="ph-light ph-warning-circle" aria-hidden="true"></i><span data-t="v5_problem"></span></p>
+        <h2 class="v5-ph reveal" data-t="h1"></h2>
+      </div>
+      <div class="sides">
+        <div class="side side-d reveal">
+          <h2 data-t="demand"></h2>
+          <ul class="factors">
+            <li><svg class="spark" viewBox="0 0 80 32"><path d="M2 26H12V10H18V26H30V4H36V26H48V16H54V26H78"/></svg><b data-t="f_calloff"></b><small data-t="f_calloff_s"></small></li>
+            <li><svg class="spark" viewBox="0 0 80 32"><path d="M2 22C12 4 22 4 32 18S52 30 62 14S72 6 78 10"/></svg><b data-t="f_season"></b><small data-t="f_season_s"></small></li>
+            <li><svg class="spark" viewBox="0 0 80 32"><path d="M2 24H30V12H54V6H78"/></svg><b data-t="f_reg"></b><small data-t="f_reg_s"></small></li>
+          </ul>
+          <span class="arrow-down" aria-hidden="true"><i></i></span>
+        </div>
+        <div class="glue gl6 reveal" id="glue6"></div>
+        <div class="side side-s reveal">
+          <h2 data-t="supply"></h2>
+          <ul class="factors">
+            <li><svg class="spark" viewBox="0 0 80 32"><path d="M2 20L8 16L13 22L19 10L25 14L31 6L37 18L43 12L49 24L55 10L61 16L67 8L73 20L78 14"/></svg><b data-t="f_price"></b><small data-t="f_price_s"></small></li>
+            <li><svg class="spark" viewBox="0 0 80 32"><path d="M5 30V8M13 30V8M21 30V8M45 30V8M61 30V8M69 30V8"/></svg><b data-t="f_fm"></b><small data-t="f_fm_s"></small></li>
+            <li><svg class="spark" viewBox="0 0 80 32"><path d="M2 8H18L24 26C42 26 56 18 78 10"/></svg><b data-t="f_freight"></b><small data-t="f_freight_s"></small></li>
+          </ul>
+          <span class="arrow-down" aria-hidden="true"><i></i></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IN ONE MINUTE: problem, what it does, what it is worth, the ask (simple.js) -->
+  <section class="sec sec-brief" id="brief"></section>
+
+  <!-- AUTOPILOT FOR SALES: one layer on top of the existing systems, drawn GeneralMind-style with an action feed (layers.js, this version only) -->
+  <section class="sec sec-layer" id="layer"></section>
+
+  <!-- PIPELINE PLANNING: every opportunity on one timeline (layer.js + gantt.js) -->
+  <section class="sec sec-plan" id="plan"></section>
+
+  <!-- VALUE: hours and margin, results first -->
+  <section class="sec sec-value" id="value"></section>
+
+  <!-- HOW -->
+  <section class="sec sec-how" id="how">
+    <div class="wrap">
+      <div class="how-head reveal">
+        <h2 class="h2" data-t="h2_how"></h2>
+        <button class="btn btn-quiet" id="sample-all"><span data-t="sample"></span><span class="btn-ic"><i class="ph-light ph-arrow-right"></i></span></button>
+      </div>
+      <div class="how-grid">
+        <div class="panel panel-d reveal" data-side="demand">
+          <div class="panel-head"><span class="pellet"></span><b data-t="demand"></b><button class="tmpl" type="button"><i class="ph-light ph-download-simple"></i><span data-t="template"></span></button></div>
+          <div class="sources"></div>
+          <label class="drop"><input type="file" accept=".xlsx,.xls,.csv" hidden><i class="ph-light ph-microsoft-excel-logo"></i><span data-t="drop"></span></label>
+          <form class="api" hidden><input type="url" required data-tp="api_ph"><button class="btn btn-small" data-t="go"></button></form>
+          <div class="loaded">
+            <div class="count"><b class="n">0</b><span data-t="needs"></span><b class="n2">0</b><span data-t="customers"></span><b class="n3"></b></div>
+            <div class="dots"></div>
+            <div class="files"></div>
+          </div>
+        </div>
+        <div class="engine reveal">
+          <svg class="feeds" viewBox="0 0 300 300" preserveAspectRatio="none" aria-hidden="true"><path class="feed feed-d" d="M0 150H150"/><path class="feed feed-s" d="M300 150H150"/></svg>
+          <div class="core" id="core"><i class="ph-light ph-arrows-merge"></i></div>
+          <button class="btn btn-primary" id="run" disabled><span data-t="match"></span><span class="btn-ic"><i class="ph-light ph-arrow-down"></i></span></button>
+        </div>
+        <div class="panel panel-s reveal" data-side="supply">
+          <div class="panel-head"><span class="pellet"></span><b data-t="supply"></b><button class="tmpl" type="button"><i class="ph-light ph-download-simple"></i><span data-t="template"></span></button></div>
+          <div class="sources"></div>
+          <label class="drop"><input type="file" accept=".xlsx,.xls,.csv" hidden><i class="ph-light ph-microsoft-excel-logo"></i><span data-t="drop"></span></label>
+          <form class="api" hidden><input type="url" required data-tp="api_ph_s"><button class="btn btn-small" data-t="go"></button></form>
+          <div class="loaded">
+            <div class="count"><b class="n">0</b><span data-t="lots"></span><b class="n2">0</b><span data-t="inbound"></span><b class="n3"></b></div>
+            <div class="dots"></div>
+            <div class="files"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="sec sec-result" id="result">
+    <div class="wrap">
+      <h2 class="h2 reveal" data-t="h2_result"></h2>
+      <div class="kpis reveal">
+        <div class="kpi kpi-cov"><b id="k-cov">-</b><span data-t="k_cov"></span><i class="meter"><i id="k-cov-bar"></i></i></div>
+        <div class="kpi"><b id="k-val">-</b><span data-t="k_val"></span></div>
+        <div class="kpi kpi-margin"><b id="k-margin">-</b><span data-t="k_margin"></span></div>
+        <div class="kpi kpi-gap"><b id="k-gap">-</b><span data-t="k_gap"></span></div>
+      </div>
+      <div class="chart-wrap reveal">
+        <div class="chart-bar">
+          <div class="legend"><span class="lg lg-d" data-t="demand"></span><span class="lg lg-gap" data-t="k_gap"></span><span class="lg lg-s" data-t="supply"></span></div>
+          <div class="filters" id="filters"></div>
+        </div>
+        <div class="chart" id="chart">
+          <svg id="sankey" aria-label="Demand to supply matches"></svg>
+          <div class="empty" id="empty"><button class="btn btn-primary" id="sample-run"><span data-t="sample"></span><span class="btn-ic"><i class="ph-light ph-arrow-right"></i></span></button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKDAY: the whole job, not just the offer -->
+  <section class="sec-workday" id="workday"></section>
+
+  <!-- ONE USE CASE: a request in, an offer out, in six steps on cards that scroll sideways; then all use cases (usecase.js) -->
+  <section class="sec sec-usecase" id="usecase"></section>
+
+  <!-- PRODUCT: play with it -->
+  <section class="sec-play" id="play"></section>
+
+  <!-- BASE PRODUCT + CUSTOMISED SOLUTION: what was just tried is the base; every solution is customised (custom.js) -->
+  <section class="sec sec-custom" id="custom"></section>
+
+  <!-- ALREADY IN USE: 11 account executives, and what one of them says it changes (proof.js) -->
+  <section class="sec sec-proof" id="proof"></section>
+
+
+  <!-- PLAN: Q4 2026 into 2027 -->
+  <section class="sec sec-roadmap" id="roadmap"></section>
+
+  <!-- START -->
+  <section class="sec sec-start" id="start">
+    <div class="wrap">
+      <div class="start-grid">
+        <div>
+          <h2 class="h2 reveal" data-t="h2_start"></h2>
+        </div>
+        <div class="pl reveal" id="pilot"></div>
+      </div>
+      <div class="trust reveal">
+        <p class="proof" data-t="proof"></p>
+        <div class="integ"><span data-t="connects"></span><ul id="integrations"></ul></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><span data-t="foot"></span><span class="demo-mark" data-t="demo"></span></footer>
+<div class="tip" id="tip" role="tooltip" hidden></div>
+
+<script>window.SHARED_BASE = 'shared/'; window.PAGE_LANG = 'de'; window.STATIC_SITE = true; window.LANG_URLS = { de: './', en: 'en/' };</script>
+<script>window.CALLS_SHOWN = 5; // one large card plus four</script>
+<script>
+  // version 2, for a CFO reading it the first time: the same content, the money and the ask first, details one click away
+  window.PAGE = { compactValue: true, classicValue: true, compactWorkday: true, ownLayer: true, ownRoadmap: true }; // version 6 (light): #layer, #roadmap and the pilot are drawn by this version
+</script>
+<script>
+  // headings: the problem, then what the product does about it (this page only; the shared scripts fall back to their own words)
+  window.UI_TEXT = {
+    en: {
+      h1: 'Scarce supply. Scattered requests.',
+      v5_h1: 'Autopilot for Key Account Managers', v5_sub: 'Biesterfeld, put your key account managers on autopilot.', v5_try: 'Play with the product', v5_pilot: 'See the pilot', v5_problem: 'Why now', nav_problem: 'Why now',
+      h2_how: 'Aggregate client and inventory data to find sales opportunities instantly.',
+      h2_result: 'Scarce supply is shared out by gut feel. Here it goes to the right customers, at the best margin.',
+      h2_workday: 'Most messages are not quotes, and follow-ups slip. One guide covers every request.',
+      h2_play: 'Play with our product.', v5_play_sub: 'Today it is inbox, Excel, SAP and CRM in separate windows. Here it is one dashboard for the day.',
+      st_1: 'Kick-off', st_1s: 'One grade family, one team', st_2: '30 days in daily work', st_2s: 'With your real requests', st_3: 'Measured', st_3s: 'Hours and margin',
+      h2_value: 'Manual work costs hours, late repricing costs margin. Here is the margin you protect and add each year.',
+      h2_roadmap: 'No multi-year IT project: a 30-day pilot first, then one platform for the group.',
+      h2_start: 'Low risk to try: one grade family, one team, 30 days.',
+      nav_brief: 'In one minute', nav_layer: 'System', nav_plan: 'Pipeline', nav_custom: 'Custom', nav_demo: 'Demo', nav_pilot: 'Pilot',
+    },
+    de: {
+      h1: 'Knappes Angebot. Verstreute Anfragen.',
+      v5_h1: 'Autopilot für Key Account Manager', v5_sub: 'Biesterfeld, setzen Sie Ihre Key Account Manager auf Autopilot.', v5_try: 'Produkt ausprobieren', v5_pilot: 'Pilot ansehen', v5_problem: 'Warum jetzt', nav_problem: 'Warum jetzt',
+      h2_how: 'Kunden- und Bestandsdaten bündeln und Verkaufschancen sofort finden.',
+      h2_result: 'Knappes Inventar wird nach Bauchgefühl verteilt. Hier geht es an die richtigen Kunden, zur besten Marge.',
+      h2_workday: 'Die meisten Nachrichten sind keine Angebotsanfragen, und das Nachfassen geht unter. Ein Leitfaden deckt alle ab.',
+      h2_play: 'Probieren Sie unser Produkt aus.', v5_play_sub: 'Heute sind es Postfach, Excel, SAP und CRM in getrennten Fenstern. Hier ist es ein Dashboard für den ganzen Tag.',
+      st_1: 'Kick-off', st_1s: 'Eine Typenfamilie, ein Team', st_2: '30 Tage im Alltag', st_2s: 'Mit Ihren echten Anfragen', st_3: 'Gemessen', st_3s: 'Stunden und Marge',
+      h2_value: 'Handarbeit kostet Stunden, späte Neubepreisung kostet Marge. So viel Marge sichern und gewinnen Sie pro Jahr.',
+      h2_roadmap: 'Kein mehrjähriges IT-Projekt: erst ein 30-Tage-Pilot, dann eine Plattform für die Gruppe.',
+      h2_start: 'Geringes Risiko: eine Typenfamilie, ein Team, 30 Tage.',
+      nav_brief: 'In einer Minute', nav_layer: 'System', nav_plan: 'Pipeline', nav_custom: 'Anpassung', nav_demo: 'Demo', nav_pilot: 'Pilot',
+    },
+  };
+</script>
+<script src="shared/vendor/xlsx.full.min.js?v=20261020h"></script>
+<script src="shared/config.js?v=20261020h"></script>
+<script src="shared/data/sample.js?v=20261020h"></script>
+<script src="shared/engine.js?v=20261020h"></script>
+<script src="shared/ui.js?v=20261020h"></script>
+<script src="shared/call.js?v=20261020h"></script>
+<script src="shared/value.js?v=20261021e"></script>
+<script src="shared/beauty/gantt.js?v=20261020h"></script>
+<script src="shared/beauty/ae.js?v=20261020h"></script>
+<script src="shared/beauty/app.js?v=20261020h"></script>
+<script src="shared/beauty/workday.js?v=20261020h"></script>
+<script src="shared/beauty/sections.js?v=20261020h"></script>
+<script src="shared/beauty/factors.js?v=20261020h"></script>
+<script src="hero6.js?v=6d"></script>
+<script src="glue6.js?v=6c"></script>
+<script src="shared/beauty/layer.js?v=20261021x"></script>
+<script src="simple.js?v=20261021c"></script>
+<script src="layers.js?v=20261021x"></script>
+<script src="custom.js?v=20261021x"></script>
+<script src="proof.js?v=20261020h"></script>
+<script src="film.js?v=20261021k"></script>
+<script src="systems.js?v=20261021x"></script>
+<script src="usecase.js?v=20261021x"></script>
+<script src="pilot.js?v=20261021b"></script>
+<script src="v5.js?v=20261021a"></script>
+</body>
+</html>
